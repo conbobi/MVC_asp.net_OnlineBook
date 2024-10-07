@@ -1,0 +1,11 @@
+﻿@model IEnumerable<NguyenVanTien.Models.NHAXUATBAN>
+
+<ul class="list-group">
+    @foreach (var nxb in Model)
+    {
+        <li class="list-group-item">
+            <!-- Đảm bảo liên kết đúng tới SachTheoNXB -->
+            <a href="@Url.Action("SachTheoNXB", "NguyenVanTien", new { id = nxb.MaNXB })">@nxb.TenNXB</a>
+        </li>
+    }
+</ul>

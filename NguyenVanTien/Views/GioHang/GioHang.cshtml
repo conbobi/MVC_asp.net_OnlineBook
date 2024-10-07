@@ -1,0 +1,63 @@
+﻿@using NguyenVanTien.Models
+@model List<GioHang>
+
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2 style="text-align:center;">CART INFORMATION</h2>
+
+<table border="1" style="width: 100%; border-collapse: collapse;">
+    <tr style="background-color:#9ca1a4; font-size: 15px; font-weight:bold; text-align:center;">
+        <td>Book Code</td>
+        <td>Book Name</td>
+        <td>Cover Photo</td>
+        <td>Quantity</td>
+        <td>Unit Price</td>
+        <td>Total Price</td>
+        <td>Actions</td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td align="center">@item.iMaSach</td>
+            <td>@item.sTenSach</td>
+            <td><img src="~/Images/@item.sAnhBia" style="width:100px;" /></td>
+
+            <!-- Begin Form for updating quantity -->
+            @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { iMaSach = item.iMaSach }, FormMethod.Post))
+            {
+                <td align="center">
+                    <input type="number" name="SoLuongMoi" value="@item.iSoLuong" min="1" style="width:50px;" />
+                </td>
+                <td align="center">@string.Format("{0:#,##0,0}", @item.dDonGia) VNĐ</td>
+                <td align="center">@string.Format("{0:#,##0,0}", @item.dThanhTien) VNĐ</td>
+                <td align="center">
+                    <!-- Link to book details -->
+                    <a href="@Url.Action("ChiTietSach", "NguyenVanTien", new { id = item.iMaSach })" class="btn btn-info">Details</a>
+                </td>
+                <td align="center">
+                    <!-- Button for updating the quantity -->
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                </td>
+                <td align="center">
+                    <!-- Link to delete the item from the cart -->
+                    <a href="@Url.Action("XoaGioHang", "GioHang", new { iMaSach = item.iMaSach })" class="btn btn-danger">Delete</a>
+                </td>
+            }
+        </tr>
+    }
+<div style="text-align:center; margin-top:20px;">
+    <a href="@Url.Action("XoaHet", "GioHang")" class="btn btn-warning">Delete All</a>
+</div>
+    <tr>
+        <td colspan="3" style="text-align:right; color:red; font-weight:bold; padding-right:5px;">
+            Total Quantity: @string.Format("{0:#,##0}", @ViewBag.TongSoLuong)
+        </td>
+        <td colspan="4" style="text-align:center; color:red; font-weight:bold;">
+            Total Price: @string.Format("{0:#,##0,0}", @ViewBag.TongTien) VNĐ
+        </td>
+    </tr>
+</table>

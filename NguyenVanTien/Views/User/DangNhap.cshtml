@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Đăng Nhập";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style type="text/css">
+    .error {
+        color: red;
+    }
+
+    .success {
+        color: green;
+        text-align: center;
+    }
+
+    table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        width: 50%;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    .input-control {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        height: 40px;
+    }
+
+    input[type="submit"],
+    input[type="reset"] {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-right: 10px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #2980b9;
+        }
+
+    tr {
+        height: 60px;
+    }
+</style>
+
+<h2 style="text-align:center">ĐĂNG NHẬP</h2>
+
+@using (Html.BeginForm("DangNhap", "User", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <table>
+        <tr>
+            <td>Tên đăng nhập:</td>
+            <td>
+                @Html.TextBox("TenDN", null, new { @class = "input-control", placeholder = "Nhập tên đăng nhập", autocomplete = "off" })
+                @Html.ValidationMessage("TenDN", "", new { @class = "error" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>Mật khẩu:</td>
+            <td>
+                @Html.Password("MatKhau", "", new { @class = "input-control", placeholder = "Nhập mật khẩu", autocomplete = "off" })
+                @Html.ValidationMessage("MatKhau", "", new { @class = "error" })
+            </td>
+        </tr>
+
+        <!-- Remember me checkbox -->
+        <tr>
+            <td></td>
+            <td>
+                <label>
+                    @Html.CheckBox("RememberMe", false)
+                    Nhớ thông tin đăng nhập
+                </label>
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Đăng nhập" />
+                <input type="reset" value="Xóa thông tin" />
+            </td>
+        </tr>
+    </table>
+}
+
+<div style="text-align:center; margin-top: 20px;">
+    <p>Bạn chưa có tài khoản? <a href="@Url.Action("DangKy", "User")">Đăng ký ngay!</a></p>
+</div>

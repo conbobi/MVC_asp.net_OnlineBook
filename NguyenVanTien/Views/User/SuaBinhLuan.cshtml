@@ -1,0 +1,19 @@
+﻿@model NguyenVanTien.Models.BinhLuan
+@{
+    ViewBag.Title = "SuaBinhLuan";
+    Layout = null;
+}
+
+<h2>Sửa bình luận</h2>
+@using (Html.BeginForm("SuaBinhLuan", "User", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.MaBinhLuan)
+    @Html.HiddenFor(model => model.MaSach)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NoiDung)
+        @Html.TextAreaFor(model => model.NoiDung, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+}

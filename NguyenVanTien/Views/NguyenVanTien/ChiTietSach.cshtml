@@ -1,0 +1,171 @@
+﻿@model NguyenVanTien.Models.SACH
+
+@{
+    ViewBag.Title = "Chi tiết sách";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<!-- CSS tùy chỉnh -->
+<style>
+    .book-details {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .book-image img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+        .book-image img:hover {
+            transform: scale(1.05);
+        }
+
+    .book-title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .book-publisher, .book-updated, .book-description {
+        font-size: 16px;
+        color: #555;
+    }
+
+    .book-price {
+        font-size: 24px;
+        color: #e74c3c;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .btn-add-to-cart {
+        padding: 10px 20px;
+        font-size: 18px;
+    }
+
+    hr {
+        border-top: 2px solid #eee;
+    }
+
+    /* CSS cho phần bình luận cải tiến */
+    .comment-section {
+        margin-top: 30px;
+        padding: 25px;
+        background-color: #eef2f7;
+        border-radius: 15px;
+    }
+
+    .comment-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    .comment-list {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .comment-item {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 12px;
+        border-left: 5px solid #3498db;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    }
+
+        .comment-item p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+    .comment-user {
+        font-weight: bold;
+        font-size: 18px;
+        color: #2980b9;
+    }
+
+    .comment-date {
+        font-size: 13px;
+        color: #7f8c8d;
+    }
+
+    .comment-content {
+        margin-top: 10px;
+        font-size: 15px;
+        color: #34495e;
+    }
+
+    /* CSS cho phần textarea nhập bình luận */
+    .form-group textarea {
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        resize: none;
+    }
+
+    .btn-submit-comment {
+        margin-top: 15px;
+        background-color: #2ecc71;
+        border-color: #27ae60;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: white;
+    }
+</style>
+<!-- Nội dung chính -->
+<h2 class="text-center book-title">@Model.TenSach</h2>
+<hr>
+
+<div class="row book-details">
+    <div class="col-md-4 book-image">
+        <!-- Hiển thị ảnh bìa sách -->
+        <img src="~/Images/@Model.AnhBia" alt="@Model.TenSach" class="img-responsive img-rounded">
+    </div>
+
+    <div class="col-md-8">
+        <h4 class="book-title">Tên sách: @Model.TenSach</h4>
+
+        <p class="book-publisher"><strong>Nhà xuất bản:</strong> @Model.NHAXUATBAN.TenNXB</p>
+
+        <!-- Làm nổi bật giá bán -->
+        <p class="book-price"><strong>Giá bán:</strong> @Html.FormatValue(@Model.GiaBan, "{0:#,##0 VND}")</p>
+
+        <p class="book-description"><strong>Mô tả:</strong> @Html.Raw(@Model.MoTa.Replace("\n", "<br>"))</p>
+
+        <p class="book-updated"><strong>Ngày cập nhật:</strong> @Html.FormatValue(@Model.NgayCapNhat, "{0:dd/MM/yyyy}")</p>
+
+        <!-- Nút thêm vào giỏ hàng -->
+        <a href="@Url.Action("ThemGioHang", "GioHang", new { id = Model.MaSach, url = Request.Url.ToString() })" class="btn btn-primary btn-add-to-cart">
+            Add to Cart
+        </a>
+    </div>
+</div>
+
+<hr>
+
+<!-- Thêm bình luận mới cho sách hiện tại -->
+@using (Html.BeginForm("ThemBinhLuan", "User", new { maSach = Model.MaSach }, FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="NoiDung">Nội dung bình luận</label>
+        <textarea id="NoiDung" name="NoiDung" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+}
+
+<!-- Phần danh sách bình luận đã gửi -->
+<div>
+    @Html.Action("BinhLuan", "User", new { maSach = Model.MaSach })
+</div>

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<NguyenVanTien.Models.BinhLuan>
+@{
+    ViewBag.Title = "Thêm Bình Luận";
+    Layout = null;
+    var maSach = ViewBag.MaSach;
+}
+
+<h2>Viết bình luận cho sách</h2>
+
+<!-- Form thêm bình luận -->
+<form asp-action="ThemBinhLuan" method="post">
+    <!-- Truyền mã sách vào input hidden -->
+    <input type="hidden" name="maSach" value="@maSach" />
+
+    <div class="form-group">
+        <label for="NoiDung">Nhập nội dung bình luận:</label>
+        <textarea id="NoiDung" name="NoiDung" class="form-control" rows="4" placeholder="Nhập bình luận tại đây..." required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Gửi bình luận</button>
+</form>

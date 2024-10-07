@@ -1,0 +1,153 @@
+﻿@{
+    ViewBag.Title = "Đăng ký";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style type="text/css">
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    h2 {
+        color: #3498db;
+        margin-bottom: 20px;
+    }
+
+    h4 {
+        color: red;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    table {
+        margin: 0 auto;
+        border-collapse: collapse;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        width: 60%;
+        padding: 20px;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    input[type="submit"],
+    input[type="reset"] {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-top: 10px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #2980b9;
+        }
+
+    .text-danger {
+        color: red;
+    }
+
+    tr {
+        height: 40px;
+    }
+</style>
+
+<h2>ĐĂNG KÝ THÀNH VIÊN</h2>
+
+<h4>@ViewBag.ThongBao</h4>
+<h4>@TempData["ThongBao"]</h4>
+
+@using (Html.BeginForm("DangKy", "User", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <table>
+        <tr>
+            <td>Họ tên:</td>
+            <td>
+                @Html.TextBox("HoTen", null, new { @class = "input-control", placeholder = "Nhập họ tên" })
+                @Html.ValidationMessage("HoTen", "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>Tên đăng nhập:</td>
+            <td>
+                @Html.TextBox("TaiKhoan", null, new { @class = "input-control", placeholder = "Nhập tên đăng nhập" })
+                @Html.ValidationMessage("TaiKhoan", "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>Mật khẩu:</td>
+            <td>
+                @Html.Password("MatKhau", null, new { @class = "input-control", placeholder = "Nhập mật khẩu" })
+                @Html.ValidationMessage("MatKhau", "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>Mật khẩu nhập lại:</td>
+            <td>
+                @Html.Password("MatKhauNL", null, new { @class = "input-control", placeholder = "Nhập lại mật khẩu" })
+                @Html.ValidationMessage("MatKhauNL", "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>Email:</td>
+            <td>
+                @Html.TextBox("Email", null, new { @class = "input-control", placeholder = "Nhập email" })
+                @Html.ValidationMessage("Email", "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>Điện thoại:</td>
+            <td>
+                @Html.TextBox("DienThoai", null, new { @class = "input-control", placeholder = "Nhập số điện thoại" })
+                @Html.ValidationMessage("DienThoai", "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td>Ngày sinh:</td>
+            <td>
+                <input type="date" name="NgaySinh" class="input-control" />
+            </td>
+        </tr>
+
+        <tr>
+            <td>Địa chỉ:</td>
+            <td>
+                <input type="text" name="DiaChi" class="input-control" placeholder="Nhập địa chỉ" />
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Đăng ký" />
+                <input type="reset" value="Xóa Thông Tin" />
+            </td>
+        </tr>
+    </table>
+}

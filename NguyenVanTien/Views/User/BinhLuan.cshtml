@@ -1,0 +1,30 @@
+﻿@model IEnumerable<NguyenVanTien.Models.BinhLuan>
+@{
+    ViewBag.Title = "BinhLuan";
+    Layout = null;
+    var maSach = ViewBag.MaSach;
+}
+
+
+
+<!-- Danh sách các bình luận -->
+
+<h3>Bình luận đã gửi</h3>
+<ul>
+    @foreach (var binhLuan in Model)
+    {
+        <ul class="comment-item">
+            <p class="comment-user">
+                <strong>@binhLuan.TenNguoiBinhLuan</strong>
+            </p>
+            <p class="comment-date">
+                (@binhLuan.NgayBinhLuan?.ToString("dd/MM/yyyy HH:mm")):
+            </p>
+            <p class="comment-content">
+                @binhLuan.NoiDung
+            </p>
+                | <a href="@Url.Action("SuaBinhLuan", "User", new { id = binhLuan.MaBinhLuan })">Sửa</a>
+                | <a href="@Url.Action("XoaBinhLuan", "User", new { id = binhLuan.MaBinhLuan })">Xóa</a>
+        </ul>
+    }
+</ul>

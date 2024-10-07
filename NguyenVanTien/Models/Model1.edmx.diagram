@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="597b8fdf83ff42ec84d3f89caf096766" Name="Diagram1">
+        <EntityTypeShape EntityType="SachOnlineModel.ADMIN" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.BinhLuan" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.CHITIETDATHANG" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.CHUDE" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.COMMENT" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.DONDATHANG" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.NHAXUATBAN" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.SACH" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.sysdiagram" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.TACGIA" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SachOnlineModel.VIETSACH" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="SachOnlineModel.FK__BinhLuan__MaSach__0D7A0286" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_CTDH_DDH" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_CTDH_S" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_S_CD" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_COMMENT_KHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_DDH_KH" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_Sach_NXB" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_VS_S" ManuallyRouted="false" />
+        <AssociationConnector Association="SachOnlineModel.FK_VS_TG" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,25 @@
+﻿@model NguyenVanTien.Models.BinhLuan
+@{
+    ViewBag.Title = "XoaBinhLuan";
+    Layout = null;
+}
+
+<h2>XoaBinhLuan</h2>
+
+<h2>Xóa bình luận</h2>
+
+<p>Bạn có chắc chắn muốn xóa bình luận này?</p>
+
+<div>
+    <p><strong>Người bình luận:</strong> @Model.TenNguoiBinhLuan</p>
+    <p><strong>Ngày bình luận:</strong> @Model.NgayBinhLuan?.ToString("dd/MM/yyyy HH:mm")</p>
+    <p><strong>Nội dung:</strong> @Model.NoiDung</p>
+</div>
+
+<form asp-action="XoaBinhLuan" method="post">
+    <input type="hidden" name="MaBinhLuan" value="@Model.MaBinhLuan" />
+    <input type="hidden" name="MaSach" value="@Model.MaSach" />
+
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a href="@Url.Action("BinhLuan", "User", new { maSach = Model.MaSach })" class="btn btn-secondary">Hủy</a>
+</form>

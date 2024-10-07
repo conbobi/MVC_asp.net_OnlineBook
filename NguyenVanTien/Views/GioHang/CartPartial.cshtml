@@ -1,0 +1,13 @@
+﻿@* This partial view will display the cart information *@
+@if (ViewBag.TongSoLuong != null && ViewBag.TongSoLuong > 0)
+{
+    <a href="@Url.Action("GioHang", "GioHang")">
+        <span class="glyphicon glyphicon-shopping-cart"></span> Giỏ hàng (@ViewBag.TongSoLuong)
+    </a>
+}
+else
+{
+    <a href="@Url.Action("GioHang", "GioHang")">
+        <span class="glyphicon glyphicon-shopping-cart"></span> Giỏ hàng (0)
+    </a>
+}

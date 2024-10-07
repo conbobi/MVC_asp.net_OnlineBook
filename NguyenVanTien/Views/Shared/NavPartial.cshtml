@@ -1,0 +1,69 @@
+﻿<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar1" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">NguyenVanTien</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">TRANG CHỦ</a></li>
+                <li><a href="#">GIỚI THIỆU</a></li>
+                <li><a href="#">LIÊN HỆ</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                        @if (Session["User"] != null)
+                        {
+                            var user = (NguyenVanTien.Models.KHACHHANG)Session["User"];
+                            @user.HoTen // Hiển thị họ tên người dùng
+                        }
+                        else
+                        {
+                            <span>Người dùng</span>
+                        }
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @if (Session["User"] == null) // Chỉ hiển thị đăng ký và đăng nhập nếu chưa đăng nhập
+                        {
+                            <li>
+                                <a href="@Url.Action("DangKy", "User")">
+                                    <span class="glyphicon glyphicon-user"></span> Đăng ký
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="@Url.Action("DangNhap", "User")">
+                                    <span class="glyphicon glyphicon-log-in"></span> Đăng nhập
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            // Hiển thị liên kết đăng xuất nếu đã đăng nhập
+                            <li>
+                                <a href="@Url.Action("DangXuat", "User")">
+                                    <span class="glyphicon glyphicon-log-out"></span> Đăng xuất
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+                <li>@Html.Action("CartPartial", "GioHang")</li>
+            </ul>
+
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Tìm kiếm">
+                </div>
+                <button type="submit" class="btn btn-default">Tìm</button>
+            </form>
+        </div>
+    </div>
+</nav>
